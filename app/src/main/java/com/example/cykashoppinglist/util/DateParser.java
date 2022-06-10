@@ -1,4 +1,4 @@
-package com.example.cykashoppinglist.mapper;
+package com.example.cykashoppinglist.util;
 
 import java.util.Date;
 import java.util.regex.Matcher;
