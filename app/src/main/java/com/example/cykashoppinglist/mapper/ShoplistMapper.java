@@ -20,6 +20,15 @@ public class ShoplistMapper {
 	}
 
 	public static List<ShoplistEntry> map(JSONArray jsonArray) {
-		return new ArrayList<>();
+		List<ShoplistEntry> entries = new ArrayList<>();
+		for (int i = 0; i < jsonArray.length(); i++) {
+			try {
+				JSONObject jsonObject = jsonArray.getJSONObject(i);
+				entries.add(ShoplistMapper.map(jsonObject));
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		return entries;
 	}
 }

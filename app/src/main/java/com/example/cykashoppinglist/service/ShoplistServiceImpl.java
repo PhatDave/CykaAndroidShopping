@@ -9,6 +9,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cykashoppinglist.entity.ShoplistEntry;
 import com.example.cykashoppinglist.mapper.ShoplistMapper;
+import com.example.cykashoppinglist.mapper.TodoMapper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +21,7 @@ import java.util.List;
 public class ShoplistServiceImpl implements ShoplistService {
 	private final RequestQueue requestQueue;
 	private final String url;
-	private final ArrayList<ShoplistEntry> shoplistEntries;
+	private ArrayList<ShoplistEntry> shoplistEntries;
 
 	public ShoplistServiceImpl(Context context) {
 		this.requestQueue = Volley.newRequestQueue(context);
@@ -32,15 +33,7 @@ public class ShoplistServiceImpl implements ShoplistService {
 	public List<ShoplistEntry> getAll() {
 		JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
 			response -> {
-				for (int i = 0; i < response.length(); i++) {
-					try {
-						JSONObject jsonObject = response.getJSONObject(i);
-						shoplistEntries.add(ShoplistMapper.map(jsonObject));
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-				}
-				System.out.println(response);
+				this.shoplistEntries = (ArrayList<ShoplistEntry>) ShoplistMapper.map(response);
 			},
 			error -> {
 				System.out.println("Uhoh!" + error);
