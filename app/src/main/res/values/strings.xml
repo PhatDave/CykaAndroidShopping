@@ -4,4 +4,7 @@
     <string name="shoppingList">shoppingList</string>
     <string name="todoList">todo</string>
     <string name="dateFormat">dd/MM/yyyy hh:mm</string>
+
+    <string name="shoppingListServiceName">Shopping List</string>
+    <string name="todoListServiceName">Todo List</string>
 </resources>

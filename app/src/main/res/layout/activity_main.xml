@@ -35,26 +35,26 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
-            android:text="ShoppingList"
+            android:text="@string/shoppingListServiceName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/shoppingListText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:textAlignment="center"
-            android:textSize="34sp"
+            android:textSize="30sp"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toStartOf="@+id/todoListText"
             android:clickable="true" />
 
     <TextView
-            android:text="TodoList"
+            android:text="@string/todoListServiceName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/todoListText"
             app:layout_constraintTop_toTopOf="parent"
             android:textAlignment="center"
-            android:textSize="34sp"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/shoppingListText"
             app:layout_constraintHorizontal_bias="0.5"

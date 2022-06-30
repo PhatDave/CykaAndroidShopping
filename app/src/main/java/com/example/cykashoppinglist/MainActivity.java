@@ -8,14 +8,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cykashoppinglist.adapter.Adapter;
-import com.example.cykashoppinglist.entity.Item;
-import com.example.cykashoppinglist.service.RestService;
-import com.example.cykashoppinglist.service.ShoplistServiceImpl;
+import com.example.cykashoppinglist.service.ServiceManager;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 	RecyclerView recyclerView;
@@ -32,13 +28,12 @@ public class MainActivity extends AppCompatActivity {
 
 		recyclerView = findViewById(R.id.recyclerView);
 
-		List<Item> items = new ArrayList<>();
-		RestService restService = new ShoplistServiceImpl(this, items);
-		adapter = new Adapter(this, items);
+		ServiceManager manager = new ServiceManager(this);
+		adapter = new Adapter(this, manager.getListReference());
+		manager.setAdapter(adapter);
 
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
 		recyclerView.setAdapter(adapter);
-		restService.setAdapter(adapter);
-		restService.getAll();
+		manager.getAll();
 	}
 }
