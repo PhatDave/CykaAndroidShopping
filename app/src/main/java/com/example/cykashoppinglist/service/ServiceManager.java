@@ -50,5 +50,6 @@ public class ServiceManager {
 		} else if (serviceName.equals(todoListName)) {
 			activeService = todoService;
 		}
+		this.getAll();
 	}
 }

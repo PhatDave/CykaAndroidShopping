@@ -2,6 +2,8 @@ package com.example.cykashoppinglist;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,8 +18,11 @@ import java.text.SimpleDateFormat;
 public class MainActivity extends AppCompatActivity {
 	RecyclerView recyclerView;
 	Adapter adapter;
+	ServiceManager serviceManager;
 	// todo How to do better?
 	public static DateFormat dateFormat;
+
+	TextView shoppingListText, todoListText;
 
 	@SuppressLint("SimpleDateFormat")
 	@Override
@@ -27,13 +32,27 @@ public class MainActivity extends AppCompatActivity {
 		dateFormat = new SimpleDateFormat(this.getResources().getString(R.string.dateFormat));
 
 		recyclerView = findViewById(R.id.recyclerView);
+		setupTitleTextButtons();
 
-		ServiceManager manager = new ServiceManager(this);
-		adapter = new Adapter(this, manager.getListReference());
-		manager.setAdapter(adapter);
+		serviceManager = new ServiceManager(this);
+		adapter = new Adapter(this, serviceManager.getListReference());
+		serviceManager.setAdapter(adapter);
 
 		recyclerView.setLayoutManager(new LinearLayoutManager(this));
 		recyclerView.setAdapter(adapter);
-		manager.getAll();
+		serviceManager.getAll();
+	}
+
+	private void setupTitleTextButtons() {
+		shoppingListText = findViewById(R.id.shoppingListText);
+		todoListText = findViewById(R.id.todoListText);
+
+		View.OnClickListener listener = v -> {
+			String service = ((TextView) v).getText().toString();
+			serviceManager.switchService(service);
+		};
+
+		shoppingListText.setOnClickListener(listener);
+		todoListText.setOnClickListener(listener);
 	}
 }
