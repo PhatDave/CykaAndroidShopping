@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.cykashoppinglist.R;
 import com.example.cykashoppinglist.adapter.Adapter;
 import com.example.cykashoppinglist.entity.Item;
 import com.example.cykashoppinglist.entity.TodoEntry;
@@ -23,12 +24,12 @@ public class TodoServiceImpl implements RestService {
 	private final RequestQueue requestQueue;
 	private final String url;
 	private Adapter adapter;
-	private List<Item> todoEntries;
+	private final List<Item> todoEntries;
 
 	public TodoServiceImpl(Context context) {
 		this.requestQueue = Volley.newRequestQueue(context);
 //		todo maybe move these to like strings or some other constant file
-		this.url = "http://178.128.141.50:8080/todo";
+		this.url = context.getResources().getString(R.string.host) + context.getResources().getString(R.string.todoList);
 		this.todoEntries = new ArrayList<>();
 	}
 

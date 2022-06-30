@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.cykashoppinglist.R;
 import com.example.cykashoppinglist.adapter.Adapter;
 import com.example.cykashoppinglist.entity.Item;
 import com.example.cykashoppinglist.entity.ShoplistEntry;
@@ -19,18 +20,18 @@ public class ShoplistServiceImpl implements RestService {
 	private final RequestQueue requestQueue;
 	private final String url;
 	private Adapter adapter;
-	private List<Item> shoplistEntries;
+	private final List<Item> shoplistEntries;
 
 	public ShoplistServiceImpl(Context context) {
 		this.requestQueue = Volley.newRequestQueue(context);
 //		todo maybe move these to like strings or some other constant file
-		this.url = "http://178.128.141.50:8080/shoppingList";
+		this.url = context.getResources().getString(R.string.host) + context.getResources().getString(R.string.shoppingList);
 		this.shoplistEntries = new ArrayList<>();
 	}
 
 	@Override
 	public List<Item> getAll() {
-		@SuppressLint("NotifyDataSetChanged") JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+		JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
 			response -> {
 			// todo maybe generify this with reflection
 				this.handleResponse(ShoplistMapper.map(response));

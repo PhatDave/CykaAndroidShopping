@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CykaShoppingList</string>
+    <string name="host">http://178.128.141.50:8080/</string>
+    <string name="shoppingList">shoppingList</string>
+    <string name="todoList">todo</string>
+    <string name="dateFormat">dd/MM/yyyy hh:mm</string>
 </resources>
