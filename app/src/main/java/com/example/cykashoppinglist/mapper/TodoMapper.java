@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TodoMapper {
-	public static TodoEntry map(JSONObject jsonObject) throws JSONException {
+	public static Item map(JSONObject jsonObject) throws JSONException {
 		TodoEntry entry = new TodoEntry();
 		entry.setId(jsonObject.getLong("id"));
 		entry.setDate(DateParser.parse(jsonObject.getString("date")));

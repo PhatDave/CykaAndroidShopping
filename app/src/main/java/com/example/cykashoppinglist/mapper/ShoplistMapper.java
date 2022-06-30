@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShoplistMapper {
-	public static ShoplistEntry map(JSONObject jsonObject) throws JSONException {
+	public static Item map(JSONObject jsonObject) throws JSONException {
 		ShoplistEntry entry = new ShoplistEntry();
 		entry.setDate(DateParser.parse(jsonObject.getString("date")));
 		entry.setId(jsonObject.getLong("id"));
