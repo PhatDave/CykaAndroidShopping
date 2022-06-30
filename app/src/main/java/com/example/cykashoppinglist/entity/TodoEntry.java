@@ -2,7 +2,7 @@ package com.example.cykashoppinglist.entity;
 
 import java.util.Date;
 
-public class TodoEntry {
+public class TodoEntry implements Item {
 	private Long id;
 	private String content;
 	private Date date;
@@ -23,6 +23,12 @@ public class TodoEntry {
 		this.content = content;
 	}
 
+	@Override
+	public String getName() {
+		return content;
+	}
+
+	@Override
 	public Date getDate() {
 		return date;
 	}
