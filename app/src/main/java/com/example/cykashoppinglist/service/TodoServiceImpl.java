@@ -26,11 +26,11 @@ public class TodoServiceImpl implements RestService {
 	private Adapter adapter;
 	private final List<Item> todoEntries;
 
-	public TodoServiceImpl(Context context) {
+	public TodoServiceImpl(Context context, List<Item> items) {
 		this.requestQueue = Volley.newRequestQueue(context);
 //		todo maybe move these to like strings or some other constant file
 		this.url = context.getResources().getString(R.string.host) + context.getResources().getString(R.string.todoList);
-		this.todoEntries = new ArrayList<>();
+		this.todoEntries = items;
 	}
 
 	@Override

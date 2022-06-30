@@ -22,11 +22,11 @@ public class ShoplistServiceImpl implements RestService {
 	private Adapter adapter;
 	private final List<Item> shoplistEntries;
 
-	public ShoplistServiceImpl(Context context) {
+	public ShoplistServiceImpl(Context context, List<Item> items) {
 		this.requestQueue = Volley.newRequestQueue(context);
 //		todo maybe move these to like strings or some other constant file
 		this.url = context.getResources().getString(R.string.host) + context.getResources().getString(R.string.shoppingList);
-		this.shoplistEntries = new ArrayList<>();
+		this.shoplistEntries = items;
 	}
 
 	@Override
