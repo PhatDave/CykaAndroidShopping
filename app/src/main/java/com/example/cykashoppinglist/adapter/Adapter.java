@@ -20,11 +20,10 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 	LayoutInflater inflater;
 	List<Item> items;
 
-	public Adapter(Context ctx, List<Item> songs) {
-		this.inflater = LayoutInflater.from(ctx);
-		this.items = songs;
+	public Adapter(Context context, List<Item> items) {
+		this.inflater = LayoutInflater.from(context);
+		this.items = items;
 	}
-
 
 	@NonNull
 	@Override
@@ -37,7 +36,6 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 		holder.itemName.setText(items.get(position).getName());
 		holder.itemDate.setText(items.get(position).getDate().toString());
-
 	}
 
 	@Override
@@ -58,7 +56,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 				@Override
 				public void onClick(View v) {
 					// todo implement
-					Toast.makeText(v.getContext(), "Do Something With this Click", Toast.LENGTH_SHORT).show();
+					Toast.makeText(v.getContext(), "poggiesssssss", Toast.LENGTH_SHORT).show();
 				}
 			});
 		}

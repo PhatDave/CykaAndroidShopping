@@ -6,6 +6,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.cykashoppinglist.adapter.Adapter;
 import com.example.cykashoppinglist.entity.Item;
 import com.example.cykashoppinglist.entity.TodoEntry;
 import com.example.cykashoppinglist.mapper.TodoMapper;
@@ -19,6 +20,7 @@ import java.util.List;
 public class TodoServiceImpl implements RestService {
 	private final RequestQueue requestQueue;
 	private final String url;
+	private Adapter adapter;
 	private List<Item> todoEntries;
 
 	public TodoServiceImpl(Context context) {
@@ -33,6 +35,7 @@ public class TodoServiceImpl implements RestService {
 		JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
 			response -> {
 				this.todoEntries = TodoMapper.map(response);
+				this.adapter.notifyDataSetChanged();
 			},
 			error -> {
 				System.out.println("Uhoh!" + error);
@@ -46,5 +49,10 @@ public class TodoServiceImpl implements RestService {
 	@Override
 	public List<Item> getListReference() {
 		return this.todoEntries;
+	}
+
+	@Override
+	public void setAdapter(Adapter adapter) {
+		this.adapter = adapter;
 	}
 }

@@ -1,11 +1,13 @@
 package com.example.cykashoppinglist.service;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.cykashoppinglist.adapter.Adapter;
 import com.example.cykashoppinglist.entity.Item;
 import com.example.cykashoppinglist.entity.ShoplistEntry;
 import com.example.cykashoppinglist.mapper.ShoplistMapper;
@@ -16,6 +18,7 @@ import java.util.List;
 public class ShoplistServiceImpl implements RestService {
 	private final RequestQueue requestQueue;
 	private final String url;
+	private Adapter adapter;
 	private List<Item> shoplistEntries;
 
 	public ShoplistServiceImpl(Context context) {
@@ -27,10 +30,11 @@ public class ShoplistServiceImpl implements RestService {
 
 	@Override
 	public List<Item> getAll() {
-		JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+		@SuppressLint("NotifyDataSetChanged") JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
 			response -> {
 			// todo maybe generify this with reflection
 				this.shoplistEntries = ShoplistMapper.map(response);
+				this.adapter.notifyDataSetChanged();
 			},
 			error -> {
 				System.out.println("Uhoh!" + error);
@@ -44,5 +48,10 @@ public class ShoplistServiceImpl implements RestService {
 	@Override
 	public List<Item> getListReference() {
 		return this.shoplistEntries;
+	}
+
+	@Override
+	public void setAdapter(Adapter adapter) {
+		this.adapter = adapter;
 	}
 }
