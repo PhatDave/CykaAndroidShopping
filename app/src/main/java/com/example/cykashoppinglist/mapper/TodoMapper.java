@@ -1,5 +1,6 @@
 package com.example.cykashoppinglist.mapper;
 
+import com.example.cykashoppinglist.entity.Item;
 import com.example.cykashoppinglist.entity.TodoEntry;
 import com.example.cykashoppinglist.util.DateParser;
 
@@ -19,8 +20,8 @@ public class TodoMapper {
 		return entry;
 	}
 
-	public static List<TodoEntry> map(JSONArray jsonArray) {
-		List<TodoEntry> entries = new ArrayList<>();
+	public static List<Item> map(JSONArray jsonArray) {
+		List<Item> entries = new ArrayList<>();
 		for (int i = 0; i < jsonArray.length(); i++) {
 			try {
 				JSONObject jsonObject = jsonArray.getJSONObject(i);
