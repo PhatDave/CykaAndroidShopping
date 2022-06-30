@@ -33,8 +33,7 @@ public class ShoplistServiceImpl implements RestService {
 		@SuppressLint("NotifyDataSetChanged") JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
 			response -> {
 			// todo maybe generify this with reflection
-				this.shoplistEntries = ShoplistMapper.map(response);
-				this.adapter.notifyDataSetChanged();
+				this.handleResponse(ShoplistMapper.map(response));
 			},
 			error -> {
 				System.out.println("Uhoh!" + error);
@@ -48,6 +47,15 @@ public class ShoplistServiceImpl implements RestService {
 	@Override
 	public List<Item> getListReference() {
 		return this.shoplistEntries;
+	}
+
+	@SuppressLint("NotifyDataSetChanged")
+	@Override
+	public void handleResponse(List<Item> response) {
+		// This must be done to preserve the reference to this.shoplistEntries
+		this.shoplistEntries.removeIf(entry -> true);
+		this.shoplistEntries.addAll(response);
+		this.adapter.notifyDataSetChanged();
 	}
 
 	@Override

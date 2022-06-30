@@ -9,5 +9,6 @@ import java.util.List;
 public interface RestService {
 	List<Item> getAll();
 	List<Item> getListReference();
+	void handleResponse(List<Item> response);
 	void setAdapter(Adapter adapter);
 }

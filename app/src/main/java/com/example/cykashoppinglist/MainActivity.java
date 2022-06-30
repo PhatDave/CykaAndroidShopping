@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
 		recyclerView = findViewById(R.id.recyclerView);
 
 		RestService restService = new ShoplistServiceImpl(this);
+		adapter = new Adapter(this, restService.getListReference());
 
-		recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-		adapter = new Adapter(getApplicationContext(), restService.getListReference());
+		recyclerView.setLayoutManager(new LinearLayoutManager(this));
 		recyclerView.setAdapter(adapter);
 		restService.setAdapter(adapter);
 		restService.getAll();
