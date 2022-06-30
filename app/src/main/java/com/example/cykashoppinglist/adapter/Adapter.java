@@ -35,7 +35,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 		holder.itemName.setText(items.get(position).getName());
-		holder.itemDate.setText(items.get(position).getDate().toString());
+		holder.itemDate.setText(items.get(position).getDateString());
 	}
 
 	@Override
