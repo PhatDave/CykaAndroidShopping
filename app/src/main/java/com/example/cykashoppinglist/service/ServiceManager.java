@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.cykashoppinglist.R;
 import com.example.cykashoppinglist.adapter.Adapter;
+import com.example.cykashoppinglist.entity.GenericItem;
 import com.example.cykashoppinglist.entity.Item;
 
 import java.util.ArrayList;
@@ -13,13 +14,21 @@ public class ServiceManager {
 	private final RestService shoppingListService;
 	private final RestService todoService;
 	private final List<Item> items;
+	private Adapter adapter;
+	private static ServiceManager instance;
 
 	private final String shoppingListName;
 	private final String todoListName;
 
 	private RestService activeService;
 
+	public static ServiceManager getInstance() {
+		// New one can not be created because context is missing, we assume this won't be called before mainActivity
+		return instance;
+	}
+
 	public ServiceManager(Context context) {
+		instance = this;
 		this.items = new ArrayList<>();
 		this.shoppingListService = new ShoplistServiceImpl(context, items);
 		this.todoService = new TodoServiceImpl(context, items);
@@ -30,19 +39,25 @@ public class ServiceManager {
 		activeService = shoppingListService;
 	}
 
-	public List<Item> getAll() {
-		return activeService.getAll();
+	public void getAll() {
+		activeService.getAll();
 	}
 
 	public List<Item> getListReference() {
 		return this.items;
 	}
 
-	public Item postItem(Item item) {
-		return activeService.postItem(item);
+	public void postItem(GenericItem item) {
+		activeService.postItem(item);
+	}
+
+	public void addItem(Item item) {
+		this.items.add(item);
+		this.adapter.notifyItemInserted(this.items.size() - 1);
 	}
 
 	public void setAdapter(Adapter adapter) {
+		this.adapter = adapter;
 		shoppingListService.setAdapter(adapter);
 		todoService.setAdapter(adapter);
 	}

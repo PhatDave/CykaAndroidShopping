@@ -13,26 +13,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/shoppingListText" />
-
-    <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/textInputLayout"
-            tools:visibility="visible"
-            app:boxBackgroundColor="#FFFFFF">
-
-        <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="New Item"
-                android:id="@+id/textInput"
-                android:textColorHint="#616161" />
-    </com.google.android.material.textfield.TextInputLayout>
+            app:layout_constraintTop_toBottomOf="@+id/shoppingListText"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName" />
 
     <TextView
             android:text="@string/shoppingListServiceName"
@@ -59,5 +41,16 @@
             app:layout_constraintStart_toEndOf="@+id/shoppingListText"
             app:layout_constraintHorizontal_bias="0.5"
             android:clickable="true" />
+
+    <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/inputText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:hint="Add Item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

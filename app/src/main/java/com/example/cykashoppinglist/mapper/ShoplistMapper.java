@@ -33,14 +33,4 @@ public class ShoplistMapper {
 		}
 		return entries;
 	}
-
-	public static JSONObject toJson(ShoplistEntry item) {
-		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject.put("content", item.getItem().getName());
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return jsonObject;
-	}
 }

@@ -32,14 +32,4 @@ public class TodoMapper {
 		}
 		return entries;
 	}
-
-	public static JSONObject toJson(TodoEntry item) {
-		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject.put("content", item.getContent());
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return jsonObject;
-	}
 }
