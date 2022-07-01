@@ -1,5 +1,7 @@
 package com.example.cykashoppinglist.entity;
 
+import android.view.View;
+
 import java.util.Date;
 
 public class GenericItem implements Item {
@@ -22,5 +24,11 @@ public class GenericItem implements Item {
 	@Override
 	public Long getId() {
 		return 0L;
+	}
+
+	@Override
+	public View.OnClickListener getOnClickListener() {
+		// Not implemented nor will be implemented
+		return null;
 	}
 }
