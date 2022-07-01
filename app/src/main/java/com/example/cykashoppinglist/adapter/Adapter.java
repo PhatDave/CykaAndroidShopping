@@ -38,6 +38,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 		holder.itemName.setText(items.get(position).getName());
 		holder.itemDate.setText(items.get(position).getDateString());
+		holder.itemView.setOnClickListener(items.get(position).getOnClickListener());
 	}
 
 	@Override
@@ -56,15 +57,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 			itemDate = itemView.findViewById(R.id.itemDate);
 			itemButton = itemView.findViewById(R.id.deleteButton);
 
-			itemButton.setOnClickListener(v -> {
-				ServiceManager.getInstance().delete(getAdapterPosition());
-			});
-
-			itemView.setOnClickListener(v -> {
-				// todo implement
-				// maybe do detail view one day
-				// Toast.makeText(v.getContext(), "poggiesssssss", Toast.LENGTH_SHORT).show();
-			});
+			itemButton.setOnClickListener(v -> ServiceManager.getInstance().delete(getAdapterPosition()));
 		}
 	}
 }

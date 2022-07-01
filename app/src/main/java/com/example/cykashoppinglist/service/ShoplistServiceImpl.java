@@ -24,9 +24,9 @@ import java.util.List;
 public class ShoplistServiceImpl implements RestService {
 	private final String url;
 
-	public ShoplistServiceImpl(Context context, List<Item> items) {
+	public ShoplistServiceImpl() {
 //		todo maybe move these to like strings or some other constant file
-		this.url = context.getResources().getString(R.string.host) + context.getResources().getString(R.string.shoppingList);
+		this.url = MainActivity.mainContext.getResources().getString(R.string.host) + MainActivity.mainContext.getResources().getString(R.string.shoppingList);
 	}
 
 	@Override

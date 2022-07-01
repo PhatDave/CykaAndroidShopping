@@ -1,6 +1,7 @@
 package com.example.cykashoppinglist;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 	// todo How to do better?
 	public static DateFormat dateFormat;
 	public static RequestQueue requestQueue;
+	public static Context mainContext;
 
 	TextView shoppingListText, todoListText;
 	EditText textInput;
@@ -37,18 +39,18 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		dateFormat = new SimpleDateFormat(this.getResources().getString(R.string.dateFormat));
-
-		requestQueue = Volley.newRequestQueue(this);
+		mainContext = this;
+		requestQueue = Volley.newRequestQueue(mainContext);
 
 		recyclerView = findViewById(R.id.recyclerView);
 		setupTitleTextButtons();
 		setupInputText();
 
-		serviceManager = new ServiceManager(this);
-		adapter = new Adapter(this, serviceManager.getListReference());
+		serviceManager = new ServiceManager();
+		adapter = new Adapter(mainContext, serviceManager.getListReference());
 		serviceManager.setAdapter(adapter);
 
-		recyclerView.setLayoutManager(new LinearLayoutManager(this));
+		recyclerView.setLayoutManager(new LinearLayoutManager(mainContext));
 		recyclerView.setAdapter(adapter);
 		serviceManager.getAll();
 	}

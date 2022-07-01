@@ -1,5 +1,7 @@
 package com.example.cykashoppinglist.entity;
 
+import android.view.View;
+
 import com.example.cykashoppinglist.MainActivity;
 
 import java.text.SimpleDateFormat;
@@ -13,6 +15,16 @@ public class ShoplistEntry implements Item {
 	@Override
 	public Long getId() {
 		return id;
+	}
+
+	@Override
+	public View.OnClickListener getOnClickListener() {
+		return new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				System.out.println("poggies");
+			}
+		};
 	}
 
 	public void setId(Long id) {

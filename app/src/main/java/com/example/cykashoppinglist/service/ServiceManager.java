@@ -3,6 +3,7 @@ package com.example.cykashoppinglist.service;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import com.example.cykashoppinglist.MainActivity;
 import com.example.cykashoppinglist.R;
 import com.example.cykashoppinglist.adapter.Adapter;
 import com.example.cykashoppinglist.entity.GenericItem;
@@ -28,14 +29,14 @@ public class ServiceManager {
 		return instance;
 	}
 
-	public ServiceManager(Context context) {
+	public ServiceManager() {
 		instance = this;
 		this.items = new ArrayList<>();
-		this.shoppingListService = new ShoplistServiceImpl(context, items);
-		this.todoService = new TodoServiceImpl(context, items);
+		this.shoppingListService = new ShoplistServiceImpl();
+		this.todoService = new TodoServiceImpl();
 
-		shoppingListName = context.getResources().getString(R.string.shoppingListServiceName);
-		todoListName = context.getResources().getString(R.string.todoListServiceName);
+		shoppingListName = MainActivity.mainContext.getResources().getString(R.string.shoppingListServiceName);
+		todoListName = MainActivity.mainContext.getResources().getString(R.string.todoListServiceName);
 
 		activeService = shoppingListService;
 	}

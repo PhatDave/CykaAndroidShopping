@@ -25,9 +25,9 @@ import java.util.List;
 public class TodoServiceImpl implements RestService {
 	private final String url;
 
-	public TodoServiceImpl(Context context, List<Item> items) {
+	public TodoServiceImpl() {
 //		todo maybe move these to like strings or some other constant file
-		this.url = context.getResources().getString(R.string.host) + context.getResources().getString(R.string.todoList);
+		this.url = MainActivity.mainContext.getResources().getString(R.string.host) + MainActivity.mainContext.getResources().getString(R.string.todoList);
 	}
 
 	@Override
