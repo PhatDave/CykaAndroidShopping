@@ -23,6 +23,7 @@ public class TodoEntry implements Item {
 	public View.OnClickListener getOnClickListener() {
 		return v -> {
 			ClipboardManager clipboard = (ClipboardManager) MainActivity.mainContext.getSystemService(Context.CLIPBOARD_SERVICE);
+			clipboard.clearPrimaryClip();
 			clipboard.setPrimaryClip(new ClipData(content, new String[]{"text/plain"}, new ClipData.Item(content)));
 		};
 	}
