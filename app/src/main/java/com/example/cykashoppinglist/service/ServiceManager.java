@@ -65,13 +65,25 @@ public class ServiceManager {
 		this.adapter.notifyItemInserted(this.items.size() - 1);
 	}
 
-	public void delete(int position) {
-		// todo implement
+	public void delete(Integer position) {
+		activeService.deleteItem(this.items.get(position));
 	}
 
-	public void deleteCallback(int position) {
-		this.items.remove(position);
-		this.adapter.notifyItemRemoved(position);
+	public void deleteCallback(Long id) {
+		int pos = -1;
+		Item foundItem = null;
+		for (Item item : this.items) {
+			if (item.getId() == id) {
+				pos = this.items.indexOf(item);
+				foundItem = item;
+				break;
+			}
+		}
+		if (pos == -1) {
+			return;
+		}
+		this.items.remove(foundItem);
+		this.adapter.notifyItemRemoved(pos);
 	}
 
 	public void setAdapter(Adapter adapter) {

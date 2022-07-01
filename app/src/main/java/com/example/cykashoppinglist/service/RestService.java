@@ -3,6 +3,7 @@ package com.example.cykashoppinglist.service;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.cykashoppinglist.MainActivity;
 import com.example.cykashoppinglist.adapter.Adapter;
 import com.example.cykashoppinglist.entity.GenericItem;
@@ -59,10 +60,17 @@ public interface RestService {
 		MainActivity.requestQueue.add(request);
 	}
 
-	// todo rework these to use generic mappers instead of hardcoded ones
-	// also include the get method
-	default void doDelete(String id) {
-		// delete is on url/id
-		throw new UnsupportedOperationException();
+	default void doDelete(Item item, String url) {
+		Long itemId = item.getId();
+		StringRequest request = new StringRequest(Request.Method.DELETE, url + "/" + itemId.toString(),
+				response -> {
+					ServiceManager.getInstance().deleteCallback(itemId);
+				},
+				error -> {
+					System.out.println("Uhoh!" + error);
+				}
+		);
+
+		MainActivity.requestQueue.add(request);
 	}
 }

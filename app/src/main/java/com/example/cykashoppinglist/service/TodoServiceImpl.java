@@ -42,6 +42,6 @@ public class TodoServiceImpl implements RestService {
 
 	@Override
 	public void deleteItem(Item item) {
-		// todo implement
+		doDelete(item, url);
 	}
 }
