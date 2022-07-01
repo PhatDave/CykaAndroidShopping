@@ -21,4 +21,11 @@ public class DateParser {
 			return new Date();
 		}
 	}
+
+	public static String parse(Date input) {
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String output = format.format(input);
+		output = output.replace(" ", "T");
+		return output;
+	}
 }

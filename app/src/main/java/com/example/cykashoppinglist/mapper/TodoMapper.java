@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TodoMapper {
-	public static Item map(JSONObject jsonObject) throws JSONException {
+	public static Item toEntity(JSONObject jsonObject) throws JSONException {
 		TodoEntry entry = new TodoEntry();
 		entry.setId(jsonObject.getLong("id"));
 		entry.setDate(DateParser.parse(jsonObject.getString("date")));
@@ -20,16 +20,26 @@ public class TodoMapper {
 		return entry;
 	}
 
-	public static List<Item> map(JSONArray jsonArray) {
+	public static List<Item> toEntity(JSONArray jsonArray) {
 		List<Item> entries = new ArrayList<>();
 		for (int i = 0; i < jsonArray.length(); i++) {
 			try {
 				JSONObject jsonObject = jsonArray.getJSONObject(i);
-				entries.add(TodoMapper.map(jsonObject));
+				entries.add(TodoMapper.toEntity(jsonObject));
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
 		}
 		return entries;
+	}
+
+	public static JSONObject toJson(TodoEntry item) {
+		JSONObject jsonObject = new JSONObject();
+		try {
+			jsonObject.put("content", item.getContent());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonObject;
 	}
 }

@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ShoplistItemMapper {
-	public static ShoplistItem map(JSONObject jsonObject) throws JSONException {
+	public static ShoplistItem toEntity(JSONObject jsonObject) throws JSONException {
 		ShoplistItem item = new ShoplistItem();
 		item.setName(jsonObject.getString("content"));
 		return item;
