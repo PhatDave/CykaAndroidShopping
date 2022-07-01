@@ -1,5 +1,6 @@
 package com.example.cykashoppinglist.service;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import com.example.cykashoppinglist.R;
@@ -47,19 +48,34 @@ public class ServiceManager {
 		return this.items;
 	}
 
+	@SuppressLint("NotifyDataSetChanged")
+	public void getCallback(List<Item> response) {
+		// There's probably a better way *not* removing all the entries but I can't be bothered
+		this.items.removeIf(entry -> true);
+		this.items.addAll(response);
+		this.adapter.notifyDataSetChanged();
+	}
+
 	public void postItem(GenericItem item) {
 		activeService.postItem(item);
 	}
 
-	public void addItem(Item item) {
+	public void postCallback(Item item) {
 		this.items.add(item);
 		this.adapter.notifyItemInserted(this.items.size() - 1);
 	}
 
+	public void delete(int position) {
+		// todo implement
+	}
+
+	public void deleteCallback(int position) {
+		this.items.remove(position);
+		this.adapter.notifyItemRemoved(position);
+	}
+
 	public void setAdapter(Adapter adapter) {
 		this.adapter = adapter;
-		shoppingListService.setAdapter(adapter);
-		todoService.setAdapter(adapter);
 	}
 
 	// this is bad but I don't think the application ever should expand to more than 2 services

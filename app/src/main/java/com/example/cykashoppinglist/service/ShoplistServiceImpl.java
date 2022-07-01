@@ -23,46 +23,24 @@ import java.util.List;
 
 public class ShoplistServiceImpl implements RestService {
 	private final String url;
-	private Adapter adapter;
-	private final List<Item> shoplistEntries;
 
 	public ShoplistServiceImpl(Context context, List<Item> items) {
 //		todo maybe move these to like strings or some other constant file
 		this.url = context.getResources().getString(R.string.host) + context.getResources().getString(R.string.shoppingList);
-		this.shoplistEntries = items;
 	}
 
 	@Override
 	public void getAll() {
-		JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
-			response -> {
-			// todo maybe generify this with reflection
-				this.handleResponse(ShoplistMapper.toEntity(response));
-			},
-			error -> {
-				System.out.println("Uhoh!" + error);
-			}
-		);
-
-		MainActivity.requestQueue.add(request);
-	}
-
-	@SuppressLint("NotifyDataSetChanged")
-	@Override
-	public void handleResponse(List<Item> response) {
-		// This must be done to preserve the reference to this.shoplistEntries
-		this.shoplistEntries.removeIf(entry -> true);
-		this.shoplistEntries.addAll(response);
-		this.adapter.notifyDataSetChanged();
-	}
-
-	@Override
-	public void setAdapter(Adapter adapter) {
-		this.adapter = adapter;
+		doGet(url, ShoplistMapper.class);
 	}
 
 	@Override
 	public void postItem(GenericItem item) {
-		doPost(item, url);
+		doPost(item, url, ShoplistMapper.class);
+	}
+
+	@Override
+	public void deleteItem(Item item) {
+		// todo implement
 	}
 }

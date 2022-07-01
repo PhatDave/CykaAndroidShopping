@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cykashoppinglist.R;
 import com.example.cykashoppinglist.entity.Item;
+import com.example.cykashoppinglist.service.ServiceManager;
 
 import java.util.List;
 
@@ -45,19 +47,23 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
 	public class ViewHolder extends RecyclerView.ViewHolder {
 		TextView itemName, itemDate;
+		Button itemButton;
 
 		public ViewHolder(@NonNull View itemView) {
 			super(itemView);
 
 			itemName = itemView.findViewById(R.id.itemName);
 			itemDate = itemView.findViewById(R.id.itemDate);
+			itemButton = itemView.findViewById(R.id.deleteButton);
 
-			itemView.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// todo implement
-					Toast.makeText(v.getContext(), "poggiesssssss", Toast.LENGTH_SHORT).show();
-				}
+			itemButton.setOnClickListener(v -> {
+				ServiceManager.getInstance().delete(getAdapterPosition());
+			});
+
+			itemView.setOnClickListener(v -> {
+				// todo implement
+				// maybe do detail view one day
+				// Toast.makeText(v.getContext(), "poggiesssssss", Toast.LENGTH_SHORT).show();
 			});
 		}
 	}

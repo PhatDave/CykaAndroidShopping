@@ -24,46 +24,24 @@ import java.util.List;
 
 public class TodoServiceImpl implements RestService {
 	private final String url;
-	private Adapter adapter;
-	private final List<Item> todoEntries;
 
 	public TodoServiceImpl(Context context, List<Item> items) {
 //		todo maybe move these to like strings or some other constant file
 		this.url = context.getResources().getString(R.string.host) + context.getResources().getString(R.string.todoList);
-		this.todoEntries = items;
 	}
 
 	@Override
 	public void getAll() {
-		JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
-			response -> {
-				this.handleResponse(TodoMapper.toEntity(response));
-			},
-			error -> {
-				System.out.println("Uhoh!" + error);
-			}
-		);
-
-		MainActivity.requestQueue.add(request);
-	}
-
-	@SuppressLint("NotifyDataSetChanged")
-	@Override
-	public void handleResponse(List<Item> response) {
-		// This must be done to preserve the reference to this.shoplistEntries
-		// There's probably a better way *not* removing all the entries but I can't be bothered
-		this.todoEntries.removeIf(entry -> true);
-		this.todoEntries.addAll(response);
-		this.adapter.notifyDataSetChanged();
-	}
-
-	@Override
-	public void setAdapter(Adapter adapter) {
-		this.adapter = adapter;
+		doGet(url, TodoMapper.class);
 	}
 
 	@Override
 	public void postItem(GenericItem item) {
-		doPost(item, url);
+		doPost(item, url, TodoMapper.class);
+	}
+
+	@Override
+	public void deleteItem(Item item) {
+		// todo implement
 	}
 }
