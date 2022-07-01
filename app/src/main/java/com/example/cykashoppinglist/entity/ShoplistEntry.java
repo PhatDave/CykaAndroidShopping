@@ -17,7 +17,6 @@ public class ShoplistEntry implements Item {
 	@Override
 	public View.OnClickListener getOnClickListener() {
 		return v -> {
-			System.out.println("poggies");
 		};
 	}
 
