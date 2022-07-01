@@ -66,7 +66,9 @@ public class ServiceManager {
 	}
 
 	public void delete(Integer position) {
-		activeService.deleteItem(this.items.get(position));
+		try {
+			activeService.deleteItem(this.items.get(position));
+		} catch (IndexOutOfBoundsException ignored) {}
 	}
 
 	public void deleteCallback(Long id) {
