@@ -18,4 +18,9 @@ public class GenericItem implements Item {
 	public Date getDate() {
 		return new Date();
 	}
+
+	@Override
+	public Long getId() {
+		return 0L;
+	}
 }

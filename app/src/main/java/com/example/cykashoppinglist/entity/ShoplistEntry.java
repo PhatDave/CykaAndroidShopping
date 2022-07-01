@@ -10,6 +10,7 @@ public class ShoplistEntry implements Item {
 	private ShoplistItem item;
 	private Date date;
 
+	@Override
 	public Long getId() {
 		return id;
 	}

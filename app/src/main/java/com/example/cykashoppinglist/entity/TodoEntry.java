@@ -7,6 +7,7 @@ public class TodoEntry implements Item {
 	private String content;
 	private Date date;
 
+	@Override
 	public Long getId() {
 		return id;
 	}
