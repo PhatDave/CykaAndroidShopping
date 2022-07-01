@@ -6,6 +6,7 @@ import android.content.Context;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cykashoppinglist.R;
 import com.example.cykashoppinglist.adapter.Adapter;
@@ -13,7 +14,8 @@ import com.example.cykashoppinglist.entity.Item;
 import com.example.cykashoppinglist.entity.ShoplistEntry;
 import com.example.cykashoppinglist.mapper.ShoplistMapper;
 
-import java.util.ArrayList;
+import org.json.JSONException;
+
 import java.util.List;
 
 public class ShoplistServiceImpl implements RestService {
@@ -34,7 +36,7 @@ public class ShoplistServiceImpl implements RestService {
 		JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
 			response -> {
 			// todo maybe generify this with reflection
-				this.handleResponse(ShoplistMapper.map(response));
+				this.handleResponse(ShoplistMapper.toEntity(response));
 			},
 			error -> {
 				System.out.println("Uhoh!" + error);
@@ -48,6 +50,27 @@ public class ShoplistServiceImpl implements RestService {
 	@Override
 	public List<Item> getListReference() {
 		return this.shoplistEntries;
+	}
+
+	@Override
+	public Item postItem(Item item) {
+		JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, ShoplistMapper.toJson((ShoplistEntry) item),
+			response -> {
+				try {
+					Item returnItem = ShoplistMapper.toEntity(response);
+					this.shoplistEntries.add(returnItem);
+					this.adapter.notifyItemInserted(this.shoplistEntries.size() - 1);
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
+			},
+			error -> {
+				System.out.println("Uhoh!" + error);
+			}
+		);
+
+		this.requestQueue.add(request);
+		return null;
 	}
 
 	@SuppressLint("NotifyDataSetChanged")

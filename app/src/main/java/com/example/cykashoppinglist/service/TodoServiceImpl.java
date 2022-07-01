@@ -6,18 +6,18 @@ import android.content.Context;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.cykashoppinglist.R;
 import com.example.cykashoppinglist.adapter.Adapter;
 import com.example.cykashoppinglist.entity.Item;
+import com.example.cykashoppinglist.entity.ShoplistEntry;
 import com.example.cykashoppinglist.entity.TodoEntry;
 import com.example.cykashoppinglist.mapper.ShoplistMapper;
 import com.example.cykashoppinglist.mapper.TodoMapper;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TodoServiceImpl implements RestService {
@@ -37,7 +37,7 @@ public class TodoServiceImpl implements RestService {
 	public List<Item> getAll() {
 		JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
 			response -> {
-				this.handleResponse(TodoMapper.map(response));
+				this.handleResponse(TodoMapper.toEntity(response));
 			},
 			error -> {
 				System.out.println("Uhoh!" + error);
@@ -51,6 +51,27 @@ public class TodoServiceImpl implements RestService {
 	@Override
 	public List<Item> getListReference() {
 		return this.todoEntries;
+	}
+
+	@Override
+	public Item postItem(Item item) {
+		JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, TodoMapper.toJson((TodoEntry) item),
+				response -> {
+					try {
+						Item returnItem = ShoplistMapper.toEntity(response);
+						this.todoEntries.add(returnItem);
+						this.adapter.notifyItemInserted(this.todoEntries.size() - 1);
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+				},
+				error -> {
+					System.out.println("Uhoh!" + error);
+				}
+		);
+
+		this.requestQueue.add(request);
+		return null;
 	}
 
 	@SuppressLint("NotifyDataSetChanged")

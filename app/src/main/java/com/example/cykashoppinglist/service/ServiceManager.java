@@ -38,6 +38,10 @@ public class ServiceManager {
 		return this.items;
 	}
 
+	public Item postItem(Item item) {
+		return activeService.postItem(item);
+	}
+
 	public void setAdapter(Adapter adapter) {
 		shoppingListService.setAdapter(adapter);
 		todoService.setAdapter(adapter);
