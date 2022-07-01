@@ -1,7 +1,6 @@
 package com.example.cykashoppinglist.service;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 
 import com.example.cykashoppinglist.MainActivity;
 import com.example.cykashoppinglist.R;

@@ -5,14 +5,11 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.cykashoppinglist.MainActivity;
-import com.example.cykashoppinglist.adapter.Adapter;
 import com.example.cykashoppinglist.entity.GenericItem;
 import com.example.cykashoppinglist.entity.Item;
 import com.example.cykashoppinglist.mapper.GenericMapper;
-import com.example.cykashoppinglist.mapper.ShoplistMapper;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.InvocationTargetException;

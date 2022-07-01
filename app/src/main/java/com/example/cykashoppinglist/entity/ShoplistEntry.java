@@ -2,9 +2,6 @@ package com.example.cykashoppinglist.entity;
 
 import android.view.View;
 
-import com.example.cykashoppinglist.MainActivity;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ShoplistEntry implements Item {

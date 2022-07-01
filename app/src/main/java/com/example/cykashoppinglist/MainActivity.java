@@ -16,7 +16,6 @@ import com.android.volley.toolbox.Volley;
 import com.example.cykashoppinglist.adapter.Adapter;
 import com.example.cykashoppinglist.entity.GenericItem;
 import com.example.cykashoppinglist.service.ServiceManager;
-import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

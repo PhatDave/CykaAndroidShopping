@@ -1,7 +1,5 @@
 package com.example.cykashoppinglist.entity;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.view.View;
