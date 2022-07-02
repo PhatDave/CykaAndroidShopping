@@ -27,6 +27,11 @@ public class GenericItem implements Item {
 	}
 
 	@Override
+	public Boolean hasDelete() {
+		return true;
+	}
+
+	@Override
 	public View.OnClickListener getOnClickListener() {
 		// Not implemented nor will be implemented
 		return null;

@@ -38,9 +38,9 @@
             android:textSize="32sp"
             android:clickable="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintBottom_toTopOf="@+id/inputText" />
+            app:layout_constraintStart_toEndOf="@+id/logText"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="@+id/logText" />
 
     <TextView
             android:text="@string/todoListServiceName"
@@ -54,6 +54,19 @@
             android:clickable="true"
             app:layout_constraintStart_toEndOf="@+id/shoppingListText"
             app:layout_constraintHorizontal_bias="0.5" />
+
+    <TextView
+            android:text="@string/logServiceName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/logText"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            android:clickable="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toStartOf="@+id/refreshText"
+            app:layout_constraintBottom_toTopOf="@+id/inputText" />
 
     <EditText
             android:layout_width="0dp"

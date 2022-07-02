@@ -4,6 +4,7 @@
     <string name="shoppingList">shoppingList</string>
     <string name="todoList">todo</string>
     <string name="log">audit</string>
+    <string name="logCount">50</string>
     <string name="dateFormat">dd/MM/yyyy hh:mm</string>
 
     <string name="shoppingListServiceName">Shopping List</string>

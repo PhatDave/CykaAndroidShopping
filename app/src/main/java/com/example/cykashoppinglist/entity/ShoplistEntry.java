@@ -15,6 +15,11 @@ public class ShoplistEntry implements Item {
 	}
 
 	@Override
+	public Boolean hasDelete() {
+		return true;
+	}
+
+	@Override
 	public View.OnClickListener getOnClickListener() {
 		return v -> {
 		};

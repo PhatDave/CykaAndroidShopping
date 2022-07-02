@@ -28,6 +28,11 @@ public class LogEntry implements Item {
 	}
 
 	@Override
+	public Boolean hasDelete() {
+		return false;
+	}
+
+	@Override
 	public View.OnClickListener getOnClickListener() {
 		return v -> {
 			Toast.makeText(v.getContext(), sourceIp, Toast.LENGTH_SHORT).show();

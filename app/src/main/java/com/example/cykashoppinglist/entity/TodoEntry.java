@@ -21,6 +21,11 @@ public class TodoEntry implements Item {
 	}
 
 	@Override
+	public Boolean hasDelete() {
+		return true;
+	}
+
+	@Override
 	public View.OnClickListener getOnClickListener() {
 		return v -> {
 			ClipboardManager clipboard = (ClipboardManager) MainActivity.mainContext.getSystemService(Context.CLIPBOARD_SERVICE);

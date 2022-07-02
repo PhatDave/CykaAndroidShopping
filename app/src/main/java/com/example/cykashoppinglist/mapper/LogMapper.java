@@ -18,7 +18,7 @@ public class LogMapper {
 		entry.setId(jsonObject.getLong("id"));
 		entry.setType(jsonObject.getString("type"));
 		entry.setSource(jsonObject.getString("source"));
-		entry.setSourceIp(jsonObject.getString("sourceIp"));
+		entry.setSourceIp(jsonObject.getString("sourceIP"));
 		entry.setDate(DateParser.parse(jsonObject.getString("date")));
 		return entry;
 	}

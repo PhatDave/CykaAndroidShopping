@@ -11,7 +11,7 @@ public class LogService implements RestService {
 	private final String url;
 
 	public LogService() {
-		this.url = MainActivity.mainContext.getResources().getString(R.string.host) + MainActivity.mainContext.getResources().getString(R.string.log);
+		this.url = MainActivity.mainContext.getResources().getString(R.string.host) + MainActivity.mainContext.getResources().getString(R.string.log) + "/" + MainActivity.mainContext.getResources().getString(R.string.logCount);
 	}
 
 	@Override

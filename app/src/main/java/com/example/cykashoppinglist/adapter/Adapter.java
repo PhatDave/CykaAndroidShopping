@@ -34,9 +34,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
 	@Override
 	public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-		holder.itemName.setText(items.get(position).getName());
-		holder.itemDate.setText(items.get(position).getDateString());
-		holder.itemView.setOnClickListener(items.get(position).getOnClickListener());
+		Item item = items.get(position);
+		holder.itemName.setText(item.getName());
+		holder.itemDate.setText(item.getDateString());
+		holder.itemView.setOnClickListener(item.getOnClickListener());
+		if (!item.hasDelete()) {
+			holder.itemView.findViewById(R.id.deleteButton).setVisibility(View.GONE);
+		} else {
+			holder.itemView.findViewById(R.id.deleteButton).setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override
