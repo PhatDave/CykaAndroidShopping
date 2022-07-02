@@ -10,16 +10,14 @@ import com.example.cykashoppinglist.entity.Item;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ServiceManager {
-	private final RestService shoppingListService;
-	private final RestService todoService;
 	private final List<Item> items;
 	private Adapter adapter;
 	private static ServiceManager instance;
 
-	private final String shoppingListName;
-	private final String todoListName;
+	private final Map<String, RestService> services;
 
 	private RestService activeService;
 
@@ -31,11 +29,19 @@ public class ServiceManager {
 	public ServiceManager() {
 		instance = this;
 		this.items = new ArrayList<>();
-		this.shoppingListService = new ShoplistServiceImpl();
-		this.todoService = new TodoServiceImpl();
+		RestService shoppingListService = new ShoplistService();
+		RestService todoService = new TodoService();
+		RestService logService = new LogService();
 
-		shoppingListName = MainActivity.mainContext.getResources().getString(R.string.shoppingListServiceName);
-		todoListName = MainActivity.mainContext.getResources().getString(R.string.todoListServiceName);
+		String shoppingListName = MainActivity.mainContext.getResources().getString(R.string.shoppingListServiceName);
+		String todoListName = MainActivity.mainContext.getResources().getString(R.string.todoListServiceName);
+		String loggerName = MainActivity.mainContext.getResources().getString(R.string.logServiceName);
+
+		services = Map.of(
+				shoppingListName, shoppingListService,
+				todoListName, todoService,
+				loggerName, logService
+		);
 
 		activeService = shoppingListService;
 	}
@@ -94,11 +100,7 @@ public class ServiceManager {
 
 	// this is bad but I don't think the application ever should expand to more than 2 services
 	public void switchService(String serviceName) {
-		if (serviceName.equals(shoppingListName)) {
-			activeService = shoppingListService;
-		} else if (serviceName.equals(todoListName)) {
-			activeService = todoService;
-		}
+		this.activeService = this.services.get(serviceName);
 		this.getAll();
 	}
 }
