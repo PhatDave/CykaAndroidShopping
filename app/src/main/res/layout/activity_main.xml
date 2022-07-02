@@ -14,7 +14,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintTop_toBottomOf="@+id/shoppingListText"
-            app:layout_constraintBottom_toTopOf="@+id/inputText" />
+            app:layout_constraintBottom_toTopOf="@+id/refreshText" />
 
     <TextView
             android:text="@string/shoppingListServiceName"
@@ -24,10 +24,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textSize="28sp"
+            android:clickable="true"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintEnd_toStartOf="@+id/todoListText"
-            android:clickable="true" />
+            app:layout_constraintEnd_toStartOf="@+id/todoListText" />
+
+    <TextView
+            android:text="Refresh"
+            android:layout_width="0dp"
+            android:layout_height="43dp"
+            android:id="@+id/refreshText"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            android:clickable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintBottom_toTopOf="@+id/inputText" />
 
     <TextView
             android:text="@string/todoListServiceName"
@@ -36,21 +49,22 @@
             android:id="@+id/todoListText"
             app:layout_constraintTop_toTopOf="parent"
             android:textAlignment="center"
-            android:textSize="30sp"
+            android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:clickable="true"
             app:layout_constraintStart_toEndOf="@+id/shoppingListText"
-            app:layout_constraintHorizontal_bias="0.5"
-            android:clickable="true" />
+            app:layout_constraintHorizontal_bias="0.5" />
 
     <EditText
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/inputText"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:hint="Add Item" />
+            android:hint="Add Item"
+            app:layout_constraintHorizontal_bias="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

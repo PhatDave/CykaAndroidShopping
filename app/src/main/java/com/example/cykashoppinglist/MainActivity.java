@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
 	public static RequestQueue requestQueue;
 	public static Context mainContext;
 
-	TextView shoppingListText, todoListText;
+	TextView shoppingListText, todoListText, refreshText;
 	EditText textInput;
 
 	@SuppressLint("SimpleDateFormat")
@@ -57,11 +57,14 @@ public class MainActivity extends AppCompatActivity {
 	private void setupTitleTextButtons() {
 		shoppingListText = findViewById(R.id.shoppingListText);
 		todoListText = findViewById(R.id.todoListText);
+		refreshText = findViewById(R.id.refreshText);
 
 		View.OnClickListener listener = v -> {
 			String service = ((TextView) v).getText().toString();
 			serviceManager.switchService(service);
 		};
+
+		refreshText.setOnClickListener(v -> serviceManager.getAll());
 
 		shoppingListText.setOnClickListener(listener);
 		todoListText.setOnClickListener(listener);
