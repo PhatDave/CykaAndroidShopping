@@ -4,28 +4,28 @@ import com.example.cykashoppinglist.MainActivity;
 import com.example.cykashoppinglist.R;
 import com.example.cykashoppinglist.entity.GenericItem;
 import com.example.cykashoppinglist.entity.Item;
+import com.example.cykashoppinglist.mapper.LogMapper;
 import com.example.cykashoppinglist.mapper.ShoplistMapper;
 
-public class ShoplistServiceImpl implements RestService {
+public class LogService implements RestService {
 	private final String url;
 
-	public ShoplistServiceImpl() {
-//		todo maybe move these to like strings or some other constant file
-		this.url = MainActivity.mainContext.getResources().getString(R.string.host) + MainActivity.mainContext.getResources().getString(R.string.shoppingList);
+	public LogService() {
+		this.url = MainActivity.mainContext.getResources().getString(R.string.host) + MainActivity.mainContext.getResources().getString(R.string.log);
 	}
 
 	@Override
 	public void getAll() {
-		doGet(url, ShoplistMapper.class);
+		doGet(url, LogMapper.class);
 	}
 
 	@Override
 	public void postItem(GenericItem item) {
-		doPost(item, url, ShoplistMapper.class);
+		return;
 	}
 
 	@Override
 	public void deleteItem(Item item) {
-		doDelete(item, url);
+		return;
 	}
 }

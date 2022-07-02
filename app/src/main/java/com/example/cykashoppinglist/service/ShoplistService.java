@@ -4,24 +4,23 @@ import com.example.cykashoppinglist.MainActivity;
 import com.example.cykashoppinglist.R;
 import com.example.cykashoppinglist.entity.GenericItem;
 import com.example.cykashoppinglist.entity.Item;
-import com.example.cykashoppinglist.mapper.TodoMapper;
+import com.example.cykashoppinglist.mapper.ShoplistMapper;
 
-public class TodoServiceImpl implements RestService {
+public class ShoplistService implements RestService {
 	private final String url;
 
-	public TodoServiceImpl() {
-//		todo maybe move these to like strings or some other constant file
-		this.url = MainActivity.mainContext.getResources().getString(R.string.host) + MainActivity.mainContext.getResources().getString(R.string.todoList);
+	public ShoplistService() {
+		this.url = MainActivity.mainContext.getResources().getString(R.string.host) + MainActivity.mainContext.getResources().getString(R.string.shoppingList);
 	}
 
 	@Override
 	public void getAll() {
-		doGet(url, TodoMapper.class);
+		doGet(url, ShoplistMapper.class);
 	}
 
 	@Override
 	public void postItem(GenericItem item) {
-		doPost(item, url, TodoMapper.class);
+		doPost(item, url, ShoplistMapper.class);
 	}
 
 	@Override
