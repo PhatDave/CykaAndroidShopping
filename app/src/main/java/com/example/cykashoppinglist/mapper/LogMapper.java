@@ -2,7 +2,6 @@ package com.example.cykashoppinglist.mapper;
 
 import com.example.cykashoppinglist.entity.Item;
 import com.example.cykashoppinglist.entity.LogEntry;
-import com.example.cykashoppinglist.entity.ShoplistEntry;
 import com.example.cykashoppinglist.util.DateParser;
 
 import org.json.JSONArray;

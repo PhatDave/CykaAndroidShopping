@@ -5,7 +5,6 @@ import com.example.cykashoppinglist.R;
 import com.example.cykashoppinglist.entity.GenericItem;
 import com.example.cykashoppinglist.entity.Item;
 import com.example.cykashoppinglist.mapper.LogMapper;
-import com.example.cykashoppinglist.mapper.ShoplistMapper;
 
 public class LogService implements RestService {
 	private final String url;
